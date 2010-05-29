@@ -12,9 +12,28 @@
 			var selectionDom = range.cloneContents();
 			var selectedLinks = selectionDom.querySelectorAll('a');
 			
+			var link;
 			for (var i = selectedLinks.length - 1; i >= 0; i--){
+				link = selectedLinks[i];
+				if (isGoogleResultsPage() && 
+						(isGoogleCachedLink(link) || isGoogleSimilarLink(link))) {
+					continue;
+				}
+				
 				GM_openInTab(selectedLinks[i].href);
 			};
 		}
 	}, true);
+	
+	function isGoogleResultsPage() {
+		return document.location.host.indexOf('.google.') !== -1;
+	}
+	
+	function isGoogleCachedLink(link) {
+		return link && link.textContent === 'Cached';
+	}
+	
+	function isGoogleSimilarLink(link) {
+		return link && link.textContent === 'Similar';
+	}
 })();
