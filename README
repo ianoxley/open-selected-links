@@ -3,3 +3,8 @@ open-selected-links
 This is a Greasemonkey script that will open each link
 in the selected text in a new tab i.e. each link will
 be opened in it's own tab.
+
+UPDATE: 03-06-2010
+------------------
+Selected links are only opened when the ctrl / cmd key is
+depressed when selecting the text.
